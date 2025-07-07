@@ -3,7 +3,7 @@ import json
 import csv
 from datetime import datetime
 
-ACCESS_TOKEN = "EAAKFAZBK4LOQBPFW4L04ohmLrhNlcUiy1H038o5HWYWmqYF19Ihq3Ws2mUWpybZA7ca4QOzmUiiSLOXfxiKLyHjgZA1AggptgorHHuyOQLl28gA3bTv9uumKodO9XzZBIvSnmhEan8u0GT4DOO4ZBGAvgYttOpGgFnN6LOFOPfWTFvdAarEcJ42y634IzZApfmYNmMfQQy1YJW"
+ACCESS_TOKEN = "ACCESS TOKEN HERE"
 
 ADS_LIBRARY_BASE = "https://graph.facebook.com/v18.0/ads_archive"
 
