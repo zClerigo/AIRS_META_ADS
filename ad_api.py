@@ -44,7 +44,7 @@ def extract_job_ads():
     for config in search_configurations:
         for search_term in config['terms']:
             for country in config['countries']:
-                print(f"🔍 Searching for: '{search_term}' in {country}")
+                print(f"Searching for: '{search_term}' in {country}")
                 
                 params = {
                     'access_token': ACCESS_TOKEN,
