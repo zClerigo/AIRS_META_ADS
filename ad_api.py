@@ -16,6 +16,7 @@ def make_request(url, params=None):
         return None
 
 def extract_job_ads():
+    # MODIFY SEARCH TERMS HERE
     search_configurations = [
         {
             'terms': ['data analyst', 'data scientist', 'business analyst', 'data engineer'],
