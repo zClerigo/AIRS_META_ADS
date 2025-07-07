@@ -37,20 +37,11 @@ search_configurations = [
 ```python
 # Job titles
 'terms': ['data analyst', 'data scientist', 'business analyst']
-
-# Skills-based
-'terms': ['python analyst', 'sql developer', 'tableau specialist']
-
-# Industry-specific
-'terms': ['finance analyst', 'marketing analyst', 'healthcare data']
-
-# Experience levels
-'terms': ['entry level analyst', 'senior data scientist', 'principal analyst']
 ```
 
 **Countries:**
 ```python
-# Major markets
+# Country examples
 'countries': ['US', 'CA', 'GB', 'AU', 'DE', 'FR']
 
 # Specific regions
