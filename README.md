@@ -1,56 +1,16 @@
-# Data Analyst Job Market Intelligence Tool
+### Install Dependencies
 
-A Python tool for extracting and analyzing data analyst job advertisements from Meta's Ad Library API. This tool helps you understand the job market landscape, salary ranges, and hiring trends by analyzing real job ads with performance metrics.
-
-## 🚀 Quick Start
-
-### 1. Install Dependencies
-
-First, install the required Python packages:
+install the required Python packages:
 
 ```bash
 pip install requests
 ```
 
-**Or create a requirements.txt file:**
-
-```bash
-# Create requirements.txt
-echo "requests>=2.25.0" > requirements.txt
-
-# Install from requirements.txt
-pip install -r requirements.txt
-```
-
-### 2. Get Your Meta Access Token
-
-1. Go to [Meta for Developers](https://developers.facebook.com/)
-2. Create an app or use existing one
-3. Generate an access token with these permissions:
-   - `ads_read` (required for Ad Library access)
-   - `public_profile` (basic access)
-4. Copy your access token
-
-### 3. Configure the Script
-
-Edit `ad_api.py` and replace the ACCESS_TOKEN:
-
-```python
-ACCESS_TOKEN = "YOUR_ACCESS_TOKEN_HERE"
-```
-
-### 4. Run the Script
+### Run the Script
 
 ```bash
 python ad_api.py
 ```
-
-## 📊 Understanding the Output
-
-The script will generate:
-- **Console output**: Real-time analysis and insights
-- **CSV file**: `data_analyst_jobs_[timestamp].csv` - Raw data (Excel/spreadsheet ready)
-- **Summary report**: `market_summary_[timestamp].txt` - Key insights
 
 ## 🔍 Customizing Search Queries
 
