@@ -1,20 +1,8 @@
-# Meta Ad Library API - Analyst Job Ads Scraper (R)
 
-This R script searches the Meta Ad Library API for ads containing "analyst" and extracts relevant job advertising data, including gender targeting information where available.
-
-## Features
-
-- 🔍 Search for "analyst" ads across multiple countries
-- 🇮🇳 Separate processing for India vs Global markets
-- 📊 Extract gender demographics (where available)
-- 📁 Export to separate CSV files for analysis
-- 🎯 Support for both regular and political/issue ads
 
 ## Prerequisites
 
 ### 1. Meta Developer Account Setup
-
-Before using this script, you need to set up a Meta Developer account and obtain API access:
 
 #### Step 1: Confirm Your Identity and Location
 1. Go to [facebook.com/ID](https://www.facebook.com/ID)
