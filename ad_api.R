@@ -223,6 +223,23 @@ extract_bounds <- function(value, bound_type) {
   return("N/A")
 }
 
+# Function to safely convert to JSON string
+safe_json_convert <- function(data) {
+  if (is.null(data) || length(data) == 0) {
+    return("N/A")
+  }
+  
+  tryCatch({
+    if (is.list(data)) {
+      return(toJSON(data, auto_unbox = TRUE))
+    } else {
+      return(as.character(data))
+    }
+  }, error = function(e) {
+    return("N/A")
+  })
+}
+
 # Function to save job ads to CSV
 save_job_ads <- function(job_ads, region = "global") {
   if (length(job_ads) == 0) {
@@ -256,21 +273,12 @@ save_job_ads <- function(job_ads, region = "global") {
       audience_lower <- extract_bounds(ad$estimated_audience_size, "lower_bound")
       audience_upper <- extract_bounds(ad$estimated_audience_size, "upper_bound")
       
-      # Extract gender information
+      # Extract gender information safely
       gender_info <- ad$gender_info
-      demographic_distribution <- if (!is.null(gender_info$demographic_distribution)) {
-        toJSON(gender_info$demographic_distribution, auto_unbox = TRUE)
-      } else { "N/A" }
-      
-      target_gender <- gender_info$target_gender %||% "N/A"
-      
-      target_ages <- if (!is.null(gender_info$target_ages)) {
-        toJSON(gender_info$target_ages, auto_unbox = TRUE)
-      } else { "N/A" }
-      
-      age_country_gender_breakdown <- if (!is.null(gender_info$age_country_gender_reach_breakdown)) {
-        toJSON(gender_info$age_country_gender_reach_breakdown, auto_unbox = TRUE)
-      } else { "N/A" }
+      demographic_distribution <- safe_json_convert(gender_info$demographic_distribution)
+      target_gender <- if (!is.null(gender_info$target_gender)) as.character(gender_info$target_gender) else "N/A"
+      target_ages <- safe_json_convert(gender_info$target_ages)
+      age_country_gender_breakdown <- safe_json_convert(gender_info$age_country_gender_reach_breakdown)
       
       # Truncate ad content
       ad_content <- list_to_string(ad$ad_creative_bodies)
@@ -279,31 +287,31 @@ save_job_ads <- function(job_ads, region = "global") {
       }
       
       df_list[[i]] <- data.frame(
-        ad_id = ad$id,
-        company = ad$company,
-        search_term = ad$search_term,
-        country = ad$country,
-        ad_type = ad$ad_type,
-        creation_date = ad$creation_date,
-        delivery_start = ad$delivery_start,
-        delivery_stop = ad$delivery_stop,
-        spend_lower = spend_lower,
-        spend_upper = spend_upper,
-        impressions_lower = impressions_lower,
-        impressions_upper = impressions_upper,
-        audience_size_lower = audience_lower,
-        audience_size_upper = audience_upper,
-        job_titles = list_to_string(ad$job_titles),
-        descriptions = list_to_string(ad$descriptions),
-        ad_content = ad_content,
-        platforms = list_to_string(ad$publisher_platforms),
-        languages = list_to_string(ad$languages),
-        has_metrics = ad$has_metrics,
-        ad_url = ad$ad_snapshot_url,
-        demographic_distribution = demographic_distribution,
-        target_gender = target_gender,
-        target_ages = target_ages,
-        age_country_gender_reach_breakdown = age_country_gender_breakdown,
+        ad_id = as.character(ad$id),
+        company = as.character(ad$company),
+        search_term = as.character(ad$search_term),
+        country = as.character(ad$country),
+        ad_type = as.character(ad$ad_type),
+        creation_date = as.character(ad$creation_date),
+        delivery_start = as.character(ad$delivery_start),
+        delivery_stop = as.character(ad$delivery_stop),
+        spend_lower = as.character(spend_lower),
+        spend_upper = as.character(spend_upper),
+        impressions_lower = as.character(impressions_lower),
+        impressions_upper = as.character(impressions_upper),
+        audience_size_lower = as.character(audience_lower),
+        audience_size_upper = as.character(audience_upper),
+        job_titles = as.character(list_to_string(ad$job_titles)),
+        descriptions = as.character(list_to_string(ad$descriptions)),
+        ad_content = as.character(ad_content),
+        platforms = as.character(list_to_string(ad$publisher_platforms)),
+        languages = as.character(list_to_string(ad$languages)),
+        has_metrics = as.logical(ad$has_metrics),
+        ad_url = as.character(ad$ad_snapshot_url),
+        demographic_distribution = as.character(demographic_distribution),
+        target_gender = as.character(target_gender),
+        target_ages = as.character(target_ages),
+        age_country_gender_breakdown = as.character(age_country_gender_breakdown),
         stringsAsFactors = FALSE
       )
     }
